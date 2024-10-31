@@ -5,23 +5,31 @@ blanco = (255, 255, 255)
 azul = (0, 255, 255)
 verde = (100, 255, 200)
 
-def cambiar_color(boton):
-    boton.activado = not boton.activado
+def cambiar_color(boton, botones, malabares):
+    boton.activate = not boton.activate
+    for i in range(len(botones)):
+        if botones[i].index != boton.index:
+            botones[i].activate = False
+        if boton.index == i:
+            malabares[i].is_activate = not malabares[i].is_activate
+        else:
+            malabares[i].is_activate = False
 
 
 class Boton():
-    def __init__(self, texto, tamanio, color, color_al_activar, accion):
+    def __init__(self,index, texto, tamanio, color, color_al_activar, accion):
+        self.index = index
         self.texto = texto
         self.tamanio = tamanio
         self.color = color
         self.color_al_activar = color_al_activar
         self.accion = accion
-        self.activado = False  # estado del boton
+        self.activate = False  # estado del boton
         
     def dibujar(self, pos, surface):
 
         # color basado en el estado del boton
-        color = self.color if not self.activado else self.color_al_activar
+        color = self.color if not self.activate else self.color_al_activar
         self.rect = pygame.Rect(pos, self.tamanio)
         pygame.draw.rect(surface, color, self.rect)
 
@@ -31,17 +39,18 @@ class Boton():
         texto_rect = texto_surface.get_rect(center = self.rect.center)
         surface.blit(texto_surface, texto_rect)
 
-    def manejar_evento(self, evento):
+    def manejar_evento(self, evento, botones, malabares):
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(evento.pos):
-                self.accion(self)
+                self.accion(self, botones, malabares)
+            
 
-boton1 = Boton('Click', (150, 50), verde, azul, cambiar_color)
-boton2 = Boton('Click', (150, 50), verde, azul, cambiar_color)
-boton3 = Boton('Click', (150, 50), verde, azul, cambiar_color)
-boton4 = Boton('Click', (150, 50), verde, azul, cambiar_color)
-boton5 = Boton('Click', (150, 50), verde, azul, cambiar_color)
-boton6 = Boton('Click', (150, 50), verde, azul, cambiar_color)
+boton1 = Boton(0, 'Click', (150, 50), verde, azul, cambiar_color)
+boton2 = Boton(1, 'Click', (150, 50), verde, azul, cambiar_color)
+boton3 = Boton(2, 'Click', (150, 50), verde, azul, cambiar_color)
+boton4 = Boton(3, 'Click', (150, 50), verde, azul, cambiar_color)
+boton5 = Boton(4, 'Click', (150, 50), verde, azul, cambiar_color)
+boton6 = Boton(5, 'Click', (150, 50), verde, azul, cambiar_color)
 
 
 class Menu():

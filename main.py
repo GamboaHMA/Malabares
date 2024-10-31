@@ -20,12 +20,18 @@ class Game():
     def run(self):
         x,y = 0,0
 
-        pelota1 = Pelota((550, 528), 25, azul, puntos_de_recorrido)
-        mano1 = Mano((528, 452),(550, 529), mano1_recorrido)
-        mano2 = Mano((790, 452),(765, 529), mano2_recorrido)
-        malabar = Malabar((mano1, mano2),puntos_de_recorrido, pelota1, 3)
+        cascade31 = Cascade3()
+        cascade41 = Cascade4()
+        cascade33 = Cascade3()
+        cascade34 = Cascade3()
+        cascade35 = Cascade3()
+        cascade36 = Cascade3()
+
+        p_izq_der = Parabola((centro_par_izq_der2[0], centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
+        p_der_izq = Parabola((centro_par_izq_der2[0] - 285, centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
 
 
+        malabares = [cascade31, cascade41, cascade33, cascade34, cascade35, cascade36]
 
         while(True):
             for event in pygame.event.get():
@@ -39,7 +45,8 @@ class Game():
 
                 for boton in menu.boton_stack:
                     boton_:Boton = boton
-                    boton_.manejar_evento(event)
+                    boton_.manejar_evento(event, menu.boton_stack, malabares)
+                
 
                     
             self.screen.fill('black')
@@ -50,19 +57,13 @@ class Game():
             pygame.draw.line(self.screen, blanco, (550, 382), (528, 452),4)
             pygame.draw.line(self.screen, blanco, (766, 382), (790, 452),4)
 
-            #parabola_izq_der1.draw(self.screen)
-            #parabola_izq_der2.draw(self.screen)
-            #parabola_izq_der3.draw(self.screen)
-            #parabola_izq_der4.draw(self.screen)
-
-            #mano1_parabola.draw(self.screen)
-            #mano2_parabola.draw(self.screen)
-
-            malabar.update()
-            malabar.draw(self.screen)
-            #mano1.draw(self.screen)
-            #mano2.draw(self.screen)
+            for malabar in malabares:
+                malabar.update()
+                malabar.draw(self.screen)
             
+            #parabola_izq_der4.draw(self.screen)
+            #p_izq_der.draw(self.screen)
+            #p_der_izq.draw(self.screen)
             pygame.display.update()
             self.clock.tick(FPS)
 
