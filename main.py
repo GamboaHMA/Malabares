@@ -21,17 +21,20 @@ class Game():
         x,y = 0,0
 
         cascade31 = Cascade3()
-        cascade41 = Cascade4()
-        cascade33 = Cascade3()
-        cascade34 = Cascade3()
-        cascade35 = Cascade3()
-        cascade36 = Cascade3()
+        cascade4 = Cascade4()
+        cascade5 = Cascade5()
+        cascade6 = Cascade6()
+        cascade3i = Cascade3Inverso()
+        circular3 = Circular3()
 
-        p_izq_der = Parabola((centro_par_izq_der2[0], centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
-        p_der_izq = Parabola((centro_par_izq_der2[0] - 285, centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
+        #parab_izq_der2_ = Parabola(centro_par_izq_der2, 0.01, 0, (-40, 40), inversa=True)
+        #p_izq_der = Parabola((centro_par_izq_der2[0], centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
+        #p_der_izq = Parabola((centro_par_izq_der2[0] - 285, centro_par_izq_der2[1] - 400), 0.01, 0, (-48, 48), mod1=16)
+        #parab_izq_der1_ = Parabola((centro_par_izq_der2[0], centro_par_izq_der2[1] - 465), 0.01, 0, (-60, 60), mod1=12)
 
 
-        malabares = [cascade31, cascade41, cascade33, cascade34, cascade35, cascade36]
+
+        malabares = [cascade31, cascade4, cascade5, cascade6, cascade3i, circular3]
 
         while(True):
             for event in pygame.event.get():
@@ -39,9 +42,9 @@ class Game():
                     pygame.quit()
                     sys.exit()
 
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    # obtener pos del pixel clickeado
-                    x,y = event.pos
+                #if event.type == pygame.MOUSEBUTTONDOWN:
+                #    # obtener pos del pixel clickeado
+                #    x,y = event.pos
 
                 for boton in menu.boton_stack:
                     boton_:Boton = boton
@@ -51,7 +54,7 @@ class Game():
                     
             self.screen.fill('black')
             self.level.run()
-            debug(f'{x,y}')
+            #debug(f'{x,y}')
             menu.dibujar(self.screen)
         
             pygame.draw.line(self.screen, blanco, (550, 382), (528, 452),4)
@@ -61,9 +64,6 @@ class Game():
                 malabar.update()
                 malabar.draw(self.screen)
             
-            #parabola_izq_der4.draw(self.screen)
-            #p_izq_der.draw(self.screen)
-            #p_der_izq.draw(self.screen)
             pygame.display.update()
             self.clock.tick(FPS)
 

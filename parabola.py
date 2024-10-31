@@ -49,6 +49,11 @@ class Parabola():
         
         return puntos_de_recorrido
 
+    def recortarPuntos(self):
+        for i in range(len(self.points)-1, -1, -1):
+            if i % 2 == 0:
+                del self.points[i]
+
 
 
 

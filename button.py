@@ -2,8 +2,8 @@ import pygame
 
 # colores
 blanco = (255, 255, 255)
-azul = (0, 255, 255)
-verde = (100, 255, 200)
+azul = (0, 155, 155)
+verde = (100, 155, 100)
 
 def cambiar_color(boton, botones, malabares):
     boton.activate = not boton.activate
@@ -45,12 +45,12 @@ class Boton():
                 self.accion(self, botones, malabares)
             
 
-boton1 = Boton(0, 'Click', (150, 50), verde, azul, cambiar_color)
-boton2 = Boton(1, 'Click', (150, 50), verde, azul, cambiar_color)
-boton3 = Boton(2, 'Click', (150, 50), verde, azul, cambiar_color)
-boton4 = Boton(3, 'Click', (150, 50), verde, azul, cambiar_color)
-boton5 = Boton(4, 'Click', (150, 50), verde, azul, cambiar_color)
-boton6 = Boton(5, 'Click', (150, 50), verde, azul, cambiar_color)
+boton1 = Boton(0, 'Cascada 3', (150, 50), verde, azul, cambiar_color)
+boton2 = Boton(1, 'Cascada 4', (150, 50), verde, azul, cambiar_color)
+boton3 = Boton(2, 'Cascada 5', (150, 50), verde, azul, cambiar_color)
+boton4 = Boton(3, 'Cascada 6', (150, 50), verde, azul, cambiar_color)
+boton5 = Boton(4, 'Cascada 3 Inversa', (150, 50), verde, azul, cambiar_color)
+boton6 = Boton(5, 'Circular 3', (150, 50), verde, azul, cambiar_color)
 
 
 class Menu():
